@@ -2,6 +2,10 @@
 
 A simple EVM faucet with web3 JWT authentication.
 
+## DISCLAIMER
+
+Using this repository implies understanding that this faucet will result in funds being dispersed to requestors. Operators are responsible for the wallet credentials configured in the faucet.
+
 ### Prerequisite
 
 - Install mysql
