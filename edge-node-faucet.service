@@ -1,0 +1,11 @@
+[Unit]
+Description=API for Edge Node Faucet
+
+[Service]
+Type=simple
+WorkingDirectory=/root/edge-node-faucet
+ExecStart=/root/edge-node-faucet/edge-node-faucet.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

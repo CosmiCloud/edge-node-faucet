@@ -1,0 +1,21 @@
+{
+    "port": "",
+    "ssl_key_path": "",
+    "ssl_cert_path": "",
+    "db_host": "localhost",
+    "db_user": "",
+    "db_pass": "",
+    "db_name": "faucet_db",
+    "base_testnet_faucet_rpc": "",
+    "base_mainnet_faucet_rpc": "",
+    "gnosis_testnet_faucet_rpc": "",
+    "gnosis_mainnet_faucet_rpc": "",
+    "neuroweb_testnet_faucet_rpc": "",
+    "neuroweb_mainnet_faucet_rpc": "",
+    "faucet_public_key": "",
+    "faucet_private_key": "",
+    "faucet_amount": "0.00001",
+    "jwt_secret": "",
+    "jwt_expire": "5m"
+  }
+  
