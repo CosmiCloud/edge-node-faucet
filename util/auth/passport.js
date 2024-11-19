@@ -5,8 +5,7 @@ const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 const passport = require('passport')
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const queryTypes = require('../../util/queryTypes')
-const queryDB = queryTypes.queryDB()
+const queryDB = require('../queryDB');
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -16,7 +15,7 @@ opts.secretOrKey = config.jwt_secret;
     new JwtStrategy(opts, async (jwt_payload, done) => {
       let query = `select * from user_header where account = ?`
       let params = [jwt_payload._id]
-      let user_record = await queryDB.getData(query, params, "faucet_db")
+      let user_record = await queryDB(query, params, "faucet_db")
             .then(results => {
             return results
             })

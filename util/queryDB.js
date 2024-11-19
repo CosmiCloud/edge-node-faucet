@@ -1,4 +1,4 @@
-const faucet_db = require("../config/faucet_db");
+const faucet_db = require("../config/faucet_db.js");
 
 module.exports = executeQuery = async (query, params) => {
   return new Promise(async (resolve, reject) => {

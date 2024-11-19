@@ -5,8 +5,7 @@ const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 const express = require("express");
 const router = express.Router();
 const web3passport = require("../../util/auth/passport");
-const queryTypes = require("../../util/queryTypes");
-const queryDB = queryTypes.queryDB();
+const queryDB = require("../../util/queryDB");
 const { ethers } = require("ethers");
 const db = "faucet_db";
 
@@ -47,8 +46,7 @@ router.post(
 
       let query = `SELECT * FROM user_header WHERE account = ? AND funded = 0 AND blockchain = ? AND application_id = ?`;
       let params = [account, blockchain, application_id];
-      let result = await queryDB
-        .getData(query, params, db)
+      let result = await queryDB(query, params, db)
         .then((results) => {
           return results;
         })
@@ -75,12 +73,9 @@ router.post(
       await transaction.wait();
 
       query = `UPDATE user_header set funded = 1 WHERE account = ? AND blockchain = ? AND application_id = ?`;
-      await queryDB
-        .getData(query, params, db)
+      await queryDB(query, params, db)
         .then((results) => {
-          //console.log('Query results:', results);
           return results;
-          // Use the results in your variable or perform further operations
         })
         .catch((error) => {
           console.error("Error retrieving data:", error);

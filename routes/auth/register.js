@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const ethers = require("ethers");
-const queryTypes = require("../../util/queryTypes");
-const queryDB = queryTypes.queryDB();
+const queryDB = require("../../util/queryDB");
 
 router.post("/", async function (req, res, next) {
   try {
@@ -29,8 +28,7 @@ router.post("/", async function (req, res, next) {
 
     query = `select * from user_header where account = ? and blockchain = ?`;
     params = [account, blockchain];
-    user_record = await queryDB
-      .getData(query, params, db)
+    user_record = await queryDB(query, params, db)
       .then((results) => {
         return results;
       })
@@ -41,8 +39,7 @@ router.post("/", async function (req, res, next) {
     if (user_record == "") {
       query = "INSERT INTO user_header (account, nonce, funded, blockchain, application_id) VALUES (?, ?, ?, ?, ?)";
       nonce = Math.floor(Math.random() * 1000000);
-      await queryDB
-        .getData(query, [account, nonce, 0, blockchain, application_id, 0])
+      await queryDB(query, [account, nonce, 0, blockchain, application_id, 0])
         .then((results) => {
           return results;
         })
@@ -52,8 +49,7 @@ router.post("/", async function (req, res, next) {
 
       query = `select * from user_header where account = ?`;
       params = [account];
-      user_record = await queryDB
-        .getData(query, params, db)
+      user_record = await queryDB(query, params, db)
         .then((results) => {
           return results;
         })

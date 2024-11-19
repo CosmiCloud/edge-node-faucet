@@ -7,8 +7,7 @@ const router = express.Router();
 const ethers = require("ethers");
 const ethUtil = require("ethereumjs-util");
 const jwt = require("jsonwebtoken");
-const queryTypes = require("../../util/queryTypes");
-const queryDB = queryTypes.queryDB();
+const queryDB = require("../../util/queryDB");
 
 router.post("/", async function (req, res, next) {
   try {
@@ -40,8 +39,7 @@ router.post("/", async function (req, res, next) {
 
     query = `select * from user_header where account = ? and application_id = ?`;
     params = [account, application_id];
-    user_record = await queryDB
-      .getData(query, params, db)
+    user_record = await queryDB(query, params, db)
       .then((results) => {
         return results;
       })
@@ -81,8 +79,7 @@ router.post("/", async function (req, res, next) {
         // Change user nonce
         query = `UPDATE user_header SET nonce = ? where account = ? and application_id = ?`;
         params = [Math.floor(Math.random() * 1000000), account, application_id];
-        await queryDB
-          .getData(query, params, db)
+        await queryDB(query, params, db)
           .then((results) => {
             return results;
           })
