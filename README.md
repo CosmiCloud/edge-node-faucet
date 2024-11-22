@@ -23,7 +23,7 @@ Using this repository implies understanding that this faucet will result in fund
 
 - Clone repo
 - npm install
-- cp -r config/example_faucet_config.json faucet_config.json
+- Copy config/example_faucet_config.json to faucet_config.json
 - nano config/faucet_config.json
 - npm start
 
